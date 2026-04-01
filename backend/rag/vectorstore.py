@@ -2,7 +2,20 @@
 import os
 from pathlib import Path
 import chromadb
+from chromadb.utils import embedding_functions
 from config import CHROMA_PATH, POLICIES_DIR, OPENAI_API_KEY, EMBEDDING_MODEL
+
+
+def _get_embedding_function():
+    """Return OpenAI embedding function for Chroma.
+    
+    This prevents Chroma from downloading/loading its default ~400MB
+    ONNX model (all-MiniLM-L6-v2), which causes OOM on Render (512 MiB).
+    """
+    return embedding_functions.OpenAIEmbeddingFunction(
+        api_key=OPENAI_API_KEY,
+        model_name=EMBEDDING_MODEL,
+    )
 
 
 def get_chroma_client():
@@ -17,6 +30,7 @@ def get_collection():
     return client.get_or_create_collection(
         name="policy_documents",
         metadata={"hnsw:space": "cosine"},
+        embedding_function=_get_embedding_function(),
     )
 
 
