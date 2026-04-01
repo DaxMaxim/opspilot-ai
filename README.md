@@ -15,7 +15,7 @@ OpsPilot AI is a policy-grounded decision engine that processes structured opera
 | **Frontend** | [opspilot-ai-pied.vercel.app](https://opspilot-ai-pied.vercel.app) |
 | **Backend API** | [opspilot-ai.onrender.com](https://opspilot-ai.onrender.com) |
 
-> ⚠️ The backend runs on Render's free tier. The first request may take ~15–30 seconds due to cold start. Subsequent requests are near real-time.
+> ⚠️ The backend runs on Render's free tier. If idle, the first request may take up to ~60 seconds due to cold start. Subsequent requests are near real-time.
 
 ---
 

@@ -204,7 +204,7 @@ export default function ReviewPage() {
               )}
             </button>
             <div style={{ marginTop: '12px', fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)', textAlign: 'center', lineHeight: 1.5 }}>
-              ⚠️ First request may take ~15–30 seconds due to backend cold start. Subsequent requests are near real-time.
+              ⚠️ If the backend is idle, the first request may take up to ~60 seconds due to cold start. Subsequent requests are near real-time.
             </div>
           </form>
 
