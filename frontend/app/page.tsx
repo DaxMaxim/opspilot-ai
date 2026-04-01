@@ -12,10 +12,12 @@ export default function LandingPage() {
           <br />
           <span className="gradient-text">Operational Decisions</span>
         </h1>
-        <p style={{ maxWidth: '650px', fontSize: '1.125rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '40px' }}>
-          A strict, deterministic AI pipeline that executes compliance-critical workflows. 
-          Powered by RAG policy enforcement, agentic orchestration, semantic evaluation, 
-          and full observability. Not a chatbot — a unified decision system.
+        <p style={{ maxWidth: '650px', fontSize: '1.125rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '16px' }}>
+          Automatically reviews cases, applies policy rules, and returns structured
+          decisions (approve, deny, escalate, or request more information).
+        </p>
+        <p style={{ maxWidth: '650px', fontSize: '0.875rem', color: 'var(--text-tertiary)', lineHeight: 1.6, marginBottom: '40px' }}>
+          Used in compliance, customer support, and operational decision systems.
         </p>
         <div style={{ display: 'flex', gap: '16px' }}>
           <a href="/review" className="btn btn-primary btn-lg" style={{ padding: '16px 32px' }}>
