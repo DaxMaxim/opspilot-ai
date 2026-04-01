@@ -8,6 +8,17 @@ OpsPilot AI is a policy-grounded decision engine that processes structured opera
 
 ---
 
+## Live Demo
+
+| Layer | URL |
+|-------|-----|
+| **Frontend** | [opspilot-ai-pied.vercel.app](https://opspilot-ai-pied.vercel.app) |
+| **Backend API** | [opspilot-ai.onrender.com](https://opspilot-ai.onrender.com) |
+
+> ⚠️ The backend runs on Render's free tier. The first request may take ~15–30 seconds due to cold start. Subsequent requests are near real-time.
+
+---
+
 ## Architecture
 
 ```
@@ -51,7 +62,7 @@ OpsPilot AI is a policy-grounded decision engine that processes structured opera
 - **Workflow Engine**: LangGraph (StateGraph)
 - **Vector Store**: ChromaDB (PersistentClient)
 - **LLM**: OpenAI gpt-4o-mini (structured JSON output mode)
-- **Embeddings**: ChromaDB built-in (all-MiniLM-L6-v2)
+- **Embeddings**: OpenAI `text-embedding-3-small`
 - **Trace Storage**: SQLite
 - **Styling**: Vanilla CSS (custom dark theme design system)
 
@@ -82,9 +93,10 @@ pip install -r requirements.txt
 ### 3. Seed the database and vector store
 
 ```bash
-# From project root
-source backend/venv/bin/activate
-python -m backend.seed
+# From the backend directory
+cd backend
+source venv/bin/activate
+python seed.py
 ```
 
 This creates:
@@ -94,8 +106,8 @@ This creates:
 ### 4. Start the backend
 
 ```bash
-source backend/venv/bin/activate
-uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
+source venv/bin/activate
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 ### 5. Start the frontend

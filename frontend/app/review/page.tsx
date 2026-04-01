@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import type { CaseInput, DecisionOutput } from '@/lib/types';
-import { reviewCase } from '@/lib/api';
+import { reviewCase, healthCheck } from '@/lib/api';
 import { SAMPLE_CASES } from '@/lib/samples';
 
 const CASE_TYPES = [
@@ -25,6 +25,11 @@ export default function ReviewPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Silent backend warm-up on page load to reduce cold-start latency
+  useEffect(() => {
+    healthCheck().catch(() => {});
+  }, []);
   const [result, setResult] = useState<DecisionOutput | null>(null);
   const [form, setForm] = useState<CaseInput>({
     case_type: 'refund_request',
@@ -77,7 +82,7 @@ export default function ReviewPage() {
           {/* Quick Demo Cases */}
           <div style={{ marginBottom: '24px' }}>
             <div className="section-title" style={{ fontSize: 'var(--text-md)', marginBottom: '12px', color: 'var(--text-secondary)' }}>
-              <span className="section-icon">⚡</span> Quick Select: Demographic Scenarios
+              <span className="section-icon">⚡</span> Quick Select: Demo Scenarios
             </div>
             <div className="demo-chips">
               {SAMPLE_CASES.map((sample, i) => (
@@ -192,12 +197,15 @@ export default function ReviewPage() {
               {loading ? (
                 <>
                   <span className="spinner" />
-                  Processing Decision Pipeline...
+                  Running decision pipeline…
                 </>
               ) : (
                 'Run Decision Review →'
               )}
             </button>
+            <div style={{ marginTop: '12px', fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)', textAlign: 'center', lineHeight: 1.5 }}>
+              ⚠️ First request may take ~15–30 seconds due to backend cold start. Subsequent requests are near real-time.
+            </div>
           </form>
 
         </div>
@@ -207,9 +215,12 @@ export default function ReviewPage() {
           {loading && (
             <div className="card loading-overlay">
               <div className="spinner" />
-              <div>Running decision pipeline...</div>
-              <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)' }}>
+              <div>Running decision pipeline…</div>
+              <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)', marginTop: '8px' }}>
                 parse → retrieve → decide → tools → evaluate → trace
+              </div>
+              <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-tertiary)', marginTop: '4px', opacity: 0.7 }}>
+                Initializing backend if idle…
               </div>
             </div>
           )}
