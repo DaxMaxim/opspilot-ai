@@ -7,7 +7,7 @@ on case inputs to ensure reproducible demo behavior.
 import random
 import time
 from datetime import datetime, timedelta
-from backend.models.decision import ToolCallResult
+from models.decision import ToolCallResult
 
 
 def check_eligibility(case_data: dict) -> ToolCallResult:

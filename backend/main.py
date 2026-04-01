@@ -2,10 +2,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-from backend.config import FRONTEND_URL
-from backend.db.database import init_db
-from backend.rag.vectorstore import seed_vector_store
-from backend.api.routes import router
+from config import FRONTEND_URL
+from db.database import init_db
+from rag.vectorstore import seed_vector_store
+from api.routes import router
 
 
 @asynccontextmanager

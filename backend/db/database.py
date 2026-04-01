@@ -1,7 +1,7 @@
 """SQLite database setup and connection."""
 import sqlite3
 from pathlib import Path
-from backend.config import DATABASE_PATH
+from config import DATABASE_PATH
 
 
 def get_connection() -> sqlite3.Connection:

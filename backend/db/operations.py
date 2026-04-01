@@ -1,7 +1,7 @@
 """CRUD operations for trace records."""
 import json
-from backend.db.database import get_connection
-from backend.models.trace import TraceRecord, TraceListItem
+from db.database import get_connection
+from models.trace import TraceRecord, TraceListItem
 
 
 def save_trace(trace: TraceRecord) -> str:

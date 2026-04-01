@@ -8,12 +8,12 @@ import time
 import uuid
 from datetime import datetime
 from openai import OpenAI
-from backend.config import OPENAI_API_KEY, LLM_MODEL
-from backend.rag.vectorstore import retrieve_policies
-from backend.tools.mock_tools import check_eligibility, fetch_case_history, escalate_case
-from backend.db.operations import save_trace
-from backend.models.trace import TraceRecord
-from backend.workflow.state import WorkflowState
+from config import OPENAI_API_KEY, LLM_MODEL
+from rag.vectorstore import retrieve_policies
+from tools.mock_tools import check_eligibility, fetch_case_history, escalate_case
+from db.operations import save_trace
+from models.trace import TraceRecord
+from workflow.state import WorkflowState
 
 
 client = OpenAI(api_key=OPENAI_API_KEY)

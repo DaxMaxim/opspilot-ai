@@ -8,10 +8,10 @@ from datetime import datetime, timedelta
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from backend.db.database import init_db
-from backend.db.operations import save_trace
-from backend.rag.vectorstore import seed_vector_store
-from backend.models.trace import TraceRecord
+from db.database import init_db
+from db.operations import save_trace
+from rag.vectorstore import seed_vector_store
+from models.trace import TraceRecord
 
 
 def create_sample_traces():

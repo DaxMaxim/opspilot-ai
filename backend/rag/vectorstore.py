@@ -2,7 +2,7 @@
 import os
 from pathlib import Path
 import chromadb
-from backend.config import CHROMA_PATH, POLICIES_DIR, OPENAI_API_KEY, EMBEDDING_MODEL
+from config import CHROMA_PATH, POLICIES_DIR, OPENAI_API_KEY, EMBEDDING_MODEL
 
 
 def get_chroma_client():

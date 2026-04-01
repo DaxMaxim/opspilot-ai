@@ -1,7 +1,7 @@
 """LangGraph StateGraph definition for the decision workflow."""
 from langgraph.graph import StateGraph, START, END
-from backend.workflow.state import WorkflowState
-from backend.workflow.nodes import (
+from workflow.state import WorkflowState
+from workflow.nodes import (
     parse_case,
     retrieve_policy,
     decide_action,

@@ -1,11 +1,11 @@
 """FastAPI API routes for the decision engine."""
 import time
 from fastapi import APIRouter, HTTPException, Query
-from backend.models.case import CaseInput
-from backend.models.decision import DecisionOutput, RetrievedPolicy, PolicyCitation, ToolCallResult, EvaluationResult, WhyThisDecision
-from backend.models.trace import TraceListResponse, TraceListItem
-from backend.db.operations import get_trace, list_traces
-from backend.rag.vectorstore import seed_vector_store
+from models.case import CaseInput
+from models.decision import DecisionOutput, RetrievedPolicy, PolicyCitation, ToolCallResult, EvaluationResult, WhyThisDecision
+from models.trace import TraceListResponse, TraceListItem
+from db.operations import get_trace, list_traces
+from rag.vectorstore import seed_vector_store
 
 router = APIRouter(prefix="/api")
 
@@ -25,7 +25,7 @@ async def review_case(case: CaseInput):
     8. Saves the complete trace
     """
     # Import here to avoid circular imports during module loading
-    from backend.workflow.graph import workflow
+    from workflow.graph import workflow
     
     start = time.time()
     
